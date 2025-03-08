@@ -2,6 +2,11 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+# Root endpoint
+@app.get("/")
+def root():
+    return {"message": "Welcome to the E-commerce Recommendation API"}
+
 # Mock product data
 products = [
     {"id": 1, "name": "Wireless Headphones", "price": 50.99, "category": "Electronics"},
