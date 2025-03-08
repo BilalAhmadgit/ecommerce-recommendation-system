@@ -5,8 +5,8 @@ from sqlalchemy import Column, Integer, String, Float, select
 
 app = FastAPI()
 
-# Your PostgreSQL Database URL from Render
-DATABASE_URL = "postgresql+asyncpg://ecommerce_db_xzrk_user:YvjlbHojbsR6trH87Jmi83XWT68KeOdy@dpg-cv5rt7btq21c73dbfkg0-a/ecommerce_db_xzrk"
+# Corrected PostgreSQL Database URL from Render
+DATABASE_URL = "postgresql+asyncpg://ecommerce_db_xzrk_user:YvjlbHojbsR6trH87Jmi83XWT68KeOdy@dpg-cv5rt7btq21c73dbfkg0-a.oregon-postgres.render.com/ecommerce_db_xzrk"
 
 # Set up SQLAlchemy engine and session
 engine = create_async_engine(DATABASE_URL, echo=True)
@@ -39,6 +39,11 @@ async def get_db():
 # Fetch all products from the database
 @app.get("/products")
 async def get_products(db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(Product))
+    result = await db.execute(select(Product).order_by(Product.id))
     products = result.scalars().all()
-    return {"products": [p.__dict__ for p in products]}
+    return {"products": [{"id": p.id, "name": p.name, "price": p.price, "category": p.category} for p in products]}
+
+# Root endpoint to prevent 404 errors
+@app.get("/")
+def root():
+    return {"message": "Welcome to the E-commerce Recommendation API"}
