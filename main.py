@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy import Column, Integer, String, Float, select
+from sqlalchemy import Column, Integer, String, Float, select 
 from pydantic import BaseModel
 from passlib.context import CryptContext
 from jose import JWTError, jwt
