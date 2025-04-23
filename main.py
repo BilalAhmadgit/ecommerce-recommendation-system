@@ -15,7 +15,7 @@ DATABASE_URL = "postgresql+asyncpg://ecommerce_db_xzrk_user:YvjlbHojbsR6trH87Jmi
 # ✅ Set up SQLAlchemy engine and session
 engine = create_async_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
-Base = declarative_base()
+Base = declarative_base() 
 
 # ✅ Define the Product Model
 class Product(Base):
