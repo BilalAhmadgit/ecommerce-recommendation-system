@@ -7,7 +7,7 @@ from passlib.context import CryptContext
 from jose import JWTError, jwt
 from datetime import datetime,timedelta
 
-app = FastAPI()
+app = FastAPI() 
 
 # ✅ Corrected PostgreSQL Database URL from Render
 DATABASE_URL = "postgresql+asyncpg://ecommerce_db_xzrk_user:YvjlbHojbsR6trH87Jmi83XWT68KeOdy@dpg-cv5rt7btq21c73dbfkg0-a.oregon-postgres.render.com/ecommerce_db_xzrk"
